@@ -1,0 +1,5 @@
+print("Hello AI World")
+print("你好 AI 世界")
+print("迈向AI Agent工程师的第一步")
+print("加油！！！")
+print("welcome to AI Agent Engineer")
