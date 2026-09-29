@@ -11,3 +11,4 @@ print("今天的作业是创建一个新的github仓库,并将本地代码推送
 print("今天学的内容有点多,我需要好好消化一下")
 print("git和GitHub的基础知识是AI Agent工程师必须掌握的技能")
 print("git and GitHub are essential skills for AI Agent Engineers")
+print("work buddy坏我大事!!!")
