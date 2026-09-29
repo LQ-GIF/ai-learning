@@ -10,3 +10,4 @@ print("today's homework is to create a new repository on github and push the loc
 print("今天的作业是创建一个新的github仓库,并将本地代码推送至远程仓库")
 print("今天学的内容有点多,我需要好好消化一下")
 print("git和GitHub的基础知识是AI Agent工程师必须掌握的技能")
+print("git and GitHub are essential skills for AI Agent Engineers")
