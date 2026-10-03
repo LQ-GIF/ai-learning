@@ -1,0 +1,7 @@
+print("Hello, AI World!")
+print("今天是周六,是我学习AI的第六天")
+print("Today is Saturday, the sixth day of my AI learning journey.")
+print("这周安装了python、vs code、git,并用python写了第一个程序")
+print("还注册了github账号,并上传了第一个程序到github")
+print("还学习了虚拟环境的创建和密钥保护")
+print("学习AI知识马上满一周了,感觉收获满满,希望以后能学到更多的知识,加油！！！")
