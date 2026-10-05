@@ -3,11 +3,13 @@ age = int(input("请输入你的年龄："))
 next_year_age = age + 1
 print(f"{name}, 你今年{age}岁, 明年{next_year_age}岁")
 
+# 多参数print()练习
 age = 24
 add = 1
 print("明年的年龄是：", age + add)
 print("后年的年龄是：", age + add + add)
 
+# 查看变量的数据类型
 print(type(name))
 print(type(age))
 
@@ -19,6 +21,7 @@ print(type(a))
 print(type(b))
 print(type(c))
 print(type(d))
+# 判断变量的数据类型
 print(isinstance(a, float))
 print(isinstance(b, bool))
 print(isinstance(c, bool))
@@ -26,9 +29,11 @@ print(isinstance(d, type(None)))
 print(isinstance(name, str))
 print(isinstance(age, int))
 
+#多变量赋值练习
 e, f = 20, 60
 print("e + f 的值是：", e + f)
 
+# f-string和数据类型转换练习
 video_name = input("请输入视频名称：")
 base = float(input("请输入基础播放量："))
 incr = float(input("请输入新增播放量："))
