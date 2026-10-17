@@ -64,7 +64,7 @@ def delete_cases(cases):
         return
     try:
         index = int(input("请输入要删除的案例编号："))
-        if 1 <= index >= len(cases):
+        if 1 <= index <= len(cases):
             deleted = cases.pop(index - 1)
             save_data(cases)
             print(f"🗑️ 已删除案例：{deleted['名称']}")
