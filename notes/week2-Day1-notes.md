@@ -59,7 +59,7 @@
 -      def e():
 -          ... 
 
-## 今天的作用
+## 今天的作业
 - 写了 case_manager_v2.py:把上周的案例管理系统重构为函数版
 - 改进点：
     - 函数返回数据（add/search/delete都有return）
