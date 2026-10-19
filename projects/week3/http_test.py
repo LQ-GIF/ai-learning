@@ -71,11 +71,11 @@ print(f"访问 httpbin.org/status/500 --> 状态码: {response3.status_code}(500
 
 url3 = "https://httpbin.org/status/403"
 response4 = requests.get(url3, headers={"User-Agent": "Mozilla/5.0"})
-print(f"访问 httpbin.org/status/500 --> 状态码: {response4.status_code}(403=禁止访问)")
+print(f"访问 httpbin.org/status/403 --> 状态码: {response4.status_code}(403=禁止访问)")
 
 url4 = "https://httpbin.org/status/300"
 response5 = requests.get(url4, headers={"User-Agent": "Mozilla/5.0"})
-print(f"访问 httpbin.org/status/500 --> 状态码: {response5.status_code}")
+print(f"访问 httpbin.org/status/300 --> 状态码: {response5.status_code}")
 
 print("=" * 50)
 print("状态码总结:")
