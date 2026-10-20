@@ -37,6 +37,18 @@ try:
         most_starred = max(repos, key=lambda r: r['stargazers_count'])
         print(f"{most_starred['name']} - {most_starred['stargazers_count']}星")
         print("=" * 50)
+
+        print("\n" + "=" * 50)
+        print("按照星数从多到少给仓库排序")
+        sorted_starred = sorted(repos, key=lambda r: r['stargazers_count'], reverse=True)
+        for j, ssed in enumerate(sorted_starred, 1):
+            print(f"【仓库{j}】")
+            print(f"名称: {ssed['name']}")
+            print(f"描述: {ssed['description']}")
+            print(f"星数: {ssed['stargazers_count']}")
+            print(f"语言: {ssed['language']}")
+            print(f"最后更新:{ssed['updated_at']}")
+            print("-" * 50)
     else:
         print(f"请求失败, 状态码: {response.status_code}")
         print("信息错误")
