@@ -91,7 +91,7 @@ try:
     wrong_response = requests.get(url, headers=wrong_headers, timeout=10)
     wrong_result = wrong_response.json()
 
-    print(f"状态码: {response.status_code}")
+    print(f"状态码: {wrong_response.status_code}")
     print("发送的错误 Key: wrong_key_12345")
     print(f"服务器收到的 Authorization: {wrong_result['headers'].get('Authorization', '未找到')}")
     print("\n💡 说明: httpbin 不会验证 Key 的真假，它只是原样返回请求头。")
