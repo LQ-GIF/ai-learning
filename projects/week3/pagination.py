@@ -112,6 +112,8 @@ if len(all_repos) > 0:
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(all_repos, f, ensure_ascii=False, indent=2)
     print(f"所有仓库数据已保存到: {output_path}")
+else:
+    print("\n⚠️ 未获取到任何仓库数据，跳过保存，保留原文件不覆盖。")
 
 # ===== 打印前5个仓库名称，验证结果 =====
 print("\n前 5 个仓库：")
