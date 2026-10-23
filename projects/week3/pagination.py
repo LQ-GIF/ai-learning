@@ -10,7 +10,7 @@ load_dotenv()
 
 # ===== 配置信息 =====
 GITHUB_USER = "torvalds"                # 要获取仓库的 GitHub 用户名
-BASE_URL = f"https://api.github.com/users/{GITHUB_USER}/repos"
+BASE_URL = f"https://api.github.com/user/{GITHUB_USER}/repos"
 PER_PAGE = 10                           # 每页多少条
 MAX_RETRIES = 3                         # 最多重试次数
 RETRY_DELAY = 3                         # 重试间隔（秒）
@@ -107,10 +107,11 @@ print(f"  重试总次数: {total_retry_count}")
 print("=" * 50)
 
 # ===== 保存为 JSON 文件 =====
-output_path = os.path.join(os.path.dirname(__file__), "repos.json")
-with open(output_path, "w", encoding="utf-8") as f:
-    json.dump(all_repos, f, ensure_ascii=False, indent=2)
-print(f"所有仓库数据已保存到: {output_path}")
+if len(all_repos) > 0:
+    output_path = os.path.join(os.path.dirname(__file__), "repos.json")
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(all_repos, f, ensure_ascii=False, indent=2)
+    print(f"所有仓库数据已保存到: {output_path}")
 
 # ===== 打印前5个仓库名称，验证结果 =====
 print("\n前 5 个仓库：")
