@@ -18,6 +18,7 @@
 | pagination.py | 分页拉取仓库并保存 repos.json | python projects/week3/pagination.py |
 | api_utils.py | 通用 api_call 工具函数（被 v2 调用） | 无需单独运行 |
 | github_api_v2.py | 用 api_utils 重写的仓库查询脚本 | python projects/week3/github_api_v2.py |
+| repos.json | Day5 保存的数据产物 | 无需单独运行 |
 
 ## 环境变量说明
 - 根目录 .env 中 API_KEY 为测试假值，不对应真实平台。
