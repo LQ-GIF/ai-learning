@@ -33,6 +33,45 @@ def main():
     for i, repo in enumerate(repos, 1):
         print(f"[{i}] {repo['name']} (星数: {repo['stargazers_count']})")
 
+    # POST 请求测试
+    url1 = "https://httpbin.org/post"
+    data = {
+    "name": "流水别墅",
+    "architect": "弗兰克·劳埃德·赖特",
+    "year": 1935,
+    "location": "美国宾夕法尼亚州",
+    "style": "有机建筑",
+    "tags": ["有机建筑", "现代主义", "别墅"]
+    }
+
+    headers1 = {
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0"
+    }
+
+    print("=" * 50)
+    print(f"开始上传数据, 数据内容: {data}")
+    print("=" * 50)
+
+    cases = api_call(
+        method="post",
+        json=data,
+        headers=headers1,
+        url=url1
+    )
+
+    if cases is None:
+        print("\n上传失败, 程序结束")
+        return
+    else:
+        print("\n" + "=" * 50)
+        print("提取关键信息:")
+        print(f"  你发送的 JSON 数据: {cases['json']}")
+        print(f"  你发送的 URL: {cases['url']}")
+        print(f"  你的 IP 地址: {cases['origin']}")
+        print(f"  你发送的 Content-Type: {cases['headers']['Content-Type']}")
+        print("=" * 50)
+
 # 脚本直接运行时执行 main()；被别的文件导入时不自动执行
 if __name__ == "__main__":
     main()
