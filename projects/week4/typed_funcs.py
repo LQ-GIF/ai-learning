@@ -44,6 +44,7 @@ def filter_cases_by_name(cases: List[Dict], name: str) -> Optional[Dict]:
 
 # 按姓名查找成绩
 def check_grades_by_name(report_card: List[Dict], name: str) -> Optional[Dict]:
+    """按姓名查找学生成绩，找不到返回 None。"""
     for student in report_card:
         if student['name'] == name:
             return student
@@ -51,6 +52,7 @@ def check_grades_by_name(report_card: List[Dict], name: str) -> Optional[Dict]:
 
 # 按成绩筛选名单
 def check_grades_by_grades(report_card: List[Dict], grades: float) -> List[Dict]:
+    """按成绩筛选名单"""
     grades_result: List[Dict] = []
     for student in report_card:
         if student['grades'] >= grades:
@@ -79,12 +81,12 @@ if __name__ == "__main__":
     ]
 
     # 函数1 调用：area 标注为 float
-    arer: float = calculate_area(12.5, 8.0)
-    print(f"矩形面积: {arer}")
+    area: float = calculate_area(12.5, 8.0)
+    print(f"矩形面积: {area}")
 
     # 函数2 调用：筛选 1960 年之后的案例
     recent: List[Dict] = filter_cases_by_year(cases, 1950)
-    print(f"\n1960 年之后的案例 ({len(recent)}) 个")
+    print(f"\n1950 年之后的案例 ({len(recent)}) 个")
     for i, case in enumerate(recent, 1):
         print(f"[{i}] {case['name']} ({case['year']}, {case['city']})")
 
