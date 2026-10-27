@@ -1,7 +1,7 @@
 import json
 import os
 import logging
-from typing import Dict
+from typing import List, Dict, Any
 
 # ========== 日志配置 ==========
 logging.basicConfig(
@@ -14,6 +14,8 @@ logging.basicConfig(
 )
 
 DATA_FILE = "projects/week4/shopping_list.json"
+mailing_area = ["山西", "四川", "贵州", "浙江", "深圳"]
+shipping_fee = {"山西": 5, "四川": 10, "贵州": 8, "浙江": 15, "深圳":11}
 
 # ========== 商品清单加载和保存 ==========
 # ========== 商品清单加载 ==========
@@ -34,7 +36,7 @@ def load_product():
         return []
 
 # ========== 商品清单保存 ==========
-def save_product(products):
+def save_product(products: List[Dict]) -> Any:
     try:
         with open(DATA_FILE, "w", encoding="utf-8") as f:
             json.dump(products, f, ensure_ascii=False, indent=2)
@@ -49,7 +51,7 @@ def save_product(products):
 
 # ========== 商品操作函数 ==========
 # ========== 添加商品 ==========
-def add_product(products):
+def add_product(products: List[Dict]) -> List[Dict]:
     print("\n--- 添加商品 ---")
     name: str = input("请输入商品名称: ").strip()
     if not name:
@@ -57,9 +59,14 @@ def add_product(products):
         logging.warning("商品添加失败, 商品名称为空")
         return products
     else:
-        quantity: int = int(input("请输入商品数量: ").strip())
-        price: float = float(input("请输入商品价格: ").strip())
-        mailing_address: str = input("请输入邮寄地址: ").strip()
+        try:
+            quantity: int = int(input("请输入商品数量: ").strip())
+            price: float = float(input("请输入商品价格: ").strip())
+            mailing_address: str = input("请输入邮寄地址: ").strip()
+        except ValueError:
+            logging.error("输入数据格式错误")
+            print("输入数据格式错误, 请按规则重新输入!!!")
+            return products
 
     product: Dict = {
         "商品名称": name,
@@ -75,7 +82,7 @@ def add_product(products):
     return products
 
 # ========== 查看所有添加的商品 ==========
-def list_product(products):
+def list_product(products: List[Dict]) -> str:
     print("\n--- 商品清单 ---")
     if not products:
         print("暂无商品！！！")
@@ -85,7 +92,7 @@ def list_product(products):
             print(f"[{i}] {product['商品名称']} | 商品数量：{product['商品数量']} | 商品价格：{product['商品价格']} | 邮寄地址：{product['邮寄地址']} ")
 
 # ========== 搜索已添加的商品 ==========
-def search_product(products):
+def search_product(products: List[Dict]) -> str:
     print("\n--- 搜索商品 ---")
     keyword: str = input("请输入要搜索的商品名称关键词: ").strip()
     if not keyword:
@@ -109,7 +116,7 @@ def search_product(products):
             logging.info(f"搜索「{keyword}」：找到相关商品")
 
 # ========== 删除已添加的商品 ==========
-def deleted_product(products):
+def deleted_product(products: List[Dict]) -> List[Dict]:
     print("\n--- 删除商品 ---")
     if not products:
         print("暂无商品数据，无法删除。")
@@ -120,15 +127,15 @@ def deleted_product(products):
 
         try:
             index = choice - 1
-            if index < 0 or index > len(products):
+            if index < 0 or index >= len(products):
                 print("序号超出范围！")
                 logging.warning(f"删除商品失败, 序号{choice}超出范围")
                 return products
             else:
                 deleted_name = products[index]['商品名称']
                 products.pop(index)
-                logging.info(f"删除了案例：{deleted_name} (序号{choice})")
-                print(f"案例「{deleted_name}」删除成功！")
+                logging.info(f"删除了商品：{deleted_name} (序号{choice})")
+                print(f"商品「{deleted_name}」删除成功！")
                 save_product(products)
                 return products
         except ValueError:
@@ -137,10 +144,8 @@ def deleted_product(products):
             return products
 
 # ========== 计算商品运费 ==========
-def calculate_shipping(products):
+def calculate_shipping(products: List[Dict]) -> float:
     print("\n--- 计算运费 ---")
-    mailing_area = ["山西", "四川", "贵州", "浙江", "深圳"]
-    shipping_fee = {"山西": 5, "四川": 10, "贵州": 8, "浙江": 15, "深圳":11}
 
     total = 0
 
@@ -159,9 +164,8 @@ def calculate_shipping(products):
     
 
 # ========== 计算商品总价 ==========
-def total_price(products):
+def total_price(products: List[Dict]) -> float:
     print("\n--- 计算总价 ---")
-    mailing_area = ["山西", "四川", "贵州", "浙江", "深圳"]
     if not products:
         print("暂无商品数据，无法计算总价。")
         return products
@@ -200,9 +204,8 @@ def main():
         print("  7. 保存并退出")
         print("=" * 40)
 
-        choice = int(input("请输入选项 (1 - 7): ").strip())
-
         try:
+            choice = int(input("请输入选项 (1 - 7): ").strip())
             option = choice
         except ValueError:
             print("输入错误！请输入 1-7 之间的数字。")
