@@ -1,0 +1,8 @@
+{
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/projects",
+        "${workspaceFolder}/projects/week3",
+        "${workspaceFolder}/projects/week4"
+    ],
+    "python.analysis.typeCheckingMode": "basic"
+}
