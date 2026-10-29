@@ -36,3 +36,11 @@ def test_circle_none_raises():
     with pytest.raises(TypeError):
         area.calculate_circle_area()
 
+def test_triangle_normal():
+    """三角形：底 4 高 3, 面积应该是 6"""
+    assert area.calculate_triangle_area(3, 4) == 6.0
+
+def test_triangle_negative_raises():
+    """三角形传负数，必须抛出 ValueError"""
+    with pytest.raises(ValueError):
+        area.calculate_triangle_area(-3, 4)
