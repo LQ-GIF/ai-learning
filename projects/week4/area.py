@@ -1,5 +1,5 @@
 """
-area.py - 面积计算函数 (W4 Day2 业务代码)
+area.py - 面积计算 v2 (main 分支修改)
 """
 import math
 def calculate_rectangle_area(length: float, width: float) -> float:
