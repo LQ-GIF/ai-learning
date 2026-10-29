@@ -1,9 +1,5 @@
 """
-<<<<<<< HEAD
-area.py - 面积计算 v2 (main 分支修改)
-=======
 area.py - 面积工具集 (含矩形/圆形/三角形)
->>>>>>> feature/triangle-area
 """
 import math
 def calculate_rectangle_area(length: float, width: float) -> float:
