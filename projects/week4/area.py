@@ -30,3 +30,4 @@ def calculate_triangle_area(base: float, height: float) -> float:
 if __name__ == "__main__":
     print(f"矩形 3x4 面积: {calculate_rectangle_area(3, 4)}")
     print(f"圆形 r=1 面积: {calculate_circle_area(1)}")
+    print(f"三角形 3x4/2 面积: {calculate_triangle_area(3, 4)}")
