@@ -135,10 +135,10 @@
 ## 项目结构
 ```
 week2/
-|—— case_manager_v3.py   # 项目主程序
-|—— cases_v3.json        # 案例数据存储文件（程序自动生成）
-|—— case_manager.log     # 项目日志文件（程序自动生成）
-|__ README.md            # 本项目使用说明文档
+├── case_manager_v3.py   # 项目主程序
+├── cases_v3.json        # 案例数据存储文件（程序自动生成）
+├── case_manager.log     # 项目日志文件（程序自动生成）
+└── README.md            # 本项目使用说明文档
 ```
 
 ## 已知限制
