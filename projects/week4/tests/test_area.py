@@ -2,6 +2,11 @@
 test_area.py - area.py 的测试考卷
 pytest 规则：文件名 test_ 开头，测试函数 test_ 开头
 """
+import sys
+import os
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
 import math
 import area
 import pytest
@@ -34,7 +39,7 @@ def test_circle_negative_raises():
 def test_circle_none_raises():
     """异常测试：圆半径为空值，必须抛出 TypeError"""
     with pytest.raises(TypeError):
-        area.calculate_circle_area()
+        area.calculate_circle_area()  # type: ignore
 
 def test_triangle_normal():
     """三角形：底 4 高 3, 面积应该是 6"""

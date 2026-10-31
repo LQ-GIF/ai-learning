@@ -36,7 +36,7 @@ def load_product():
         return []
 
 # ========== 商品清单保存 ==========
-def save_product(products: List[Dict]) -> Any:
+def save_product(products: List[Dict]) -> bool:
     try:
         with open(DATA_FILE, "w", encoding="utf-8") as f:
             json.dump(products, f, ensure_ascii=False, indent=2)
@@ -82,7 +82,7 @@ def add_product(products: List[Dict]) -> List[Dict]:
     return products
 
 # ========== 查看所有添加的商品 ==========
-def list_product(products: List[Dict]) -> str:
+def list_product(products: List[Dict]) -> Any:
     print("\n--- 商品清单 ---")
     if not products:
         print("暂无商品！！！")
@@ -92,7 +92,7 @@ def list_product(products: List[Dict]) -> str:
             print(f"[{i}] {product['商品名称']} | 商品数量：{product['商品数量']} | 商品价格：{product['商品价格']} | 邮寄地址：{product['邮寄地址']} ")
 
 # ========== 搜索已添加的商品 ==========
-def search_product(products: List[Dict]) -> str:
+def search_product(products: List[Dict]) -> Any:
     print("\n--- 搜索商品 ---")
     keyword: str = input("请输入要搜索的商品名称关键词: ").strip()
     if not keyword:
@@ -147,24 +147,32 @@ def deleted_product(products: List[Dict]) -> List[Dict]:
 def calculate_shipping(products: List[Dict]) -> float:
     print("\n--- 计算运费 ---")
 
-    total = 0
+    total = 0.0
 
     for product in products:
         if product['邮寄地址'] in mailing_area:
             print(f"{product['邮寄地址']} 在配送地区内, 正在计算运费")
-            print(shipping_fee.get(product['邮寄地址']) * 2)
-            total += shipping_fee.get(product['邮寄地址']) * 2
+            fee = shipping_fee.get(product["邮寄地址"])
+            if fee is not None:
+                print(fee * 2)
+                total += fee  * 2
+                logging.info(f"邮寄地址在配送范围内, 运费为{total}")
+            else:
+                print("该地区未设置运费, 请联系管理员")
+                logging.warning("该地区未设置运费, 请联系管理员设置运费")
         elif not product['邮寄地址']:
             print("邮寄地址为空, 请输入邮寄地址")
+            logging.warning("邮寄地址为空, 请输入邮寄地址")
         else:
             print(f"{product['邮寄地址']} 不在配送地区内，请修改配送地址")
+            logging.warning(f"{product['邮寄地址']} 不在配送地区内，请修改配送地址")
 
     print(f"运费总金额为{total}元")
     return total
     
 
 # ========== 计算商品总价 ==========
-def total_price(products: List[Dict]) -> float:
+def total_price(products: List[Dict]) -> Any:
     print("\n--- 计算总价 ---")
     if not products:
         print("暂无商品数据，无法计算总价。")
