@@ -7,7 +7,7 @@ import sys
 import os
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "week3"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "week3"))
 from api_utils import api_call
 
 def test_method_delete_raises():
