@@ -20,16 +20,16 @@ def main():
         parser.print_help()
         return
 
-    resules = search_cases(
+    results = search_cases(
         keyword=args.keyword,
         city=args.city,
         case_type=args.type,
         min_area=args.min_area
     )
 
-    print(f"\n找到 {len(resules)} 个案例")
+    print(f"\n找到 {len(results)} 个案例")
     print("-" * 60)
-    for i, c in enumerate(resules, 1):
+    for i, c in enumerate(results, 1):
         print(f"{[i]}  {c['name']} | {c['city']} | {c['type']} | {c['area']}㎡")
     print("-" * 60)
 
