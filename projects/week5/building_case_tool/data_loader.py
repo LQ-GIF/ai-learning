@@ -20,5 +20,5 @@ def export_result(results, output_path="projects/week5/output_case.csv"):
         writer = csv.writer(f)
         writer.writerow(['序号','案例名', '城市', '类型', '面积(㎡)'])
         for i, c in enumerate(results, 1):
-            writer.writerow([[i], c['案例名'], c['城市'], c['类型'], c['面积']])
+            writer.writerow([i, c['案例名'], c['城市'], c['类型'], c['面积']])
     print(f"已导出 {len(results)} 条结果到 {output_path}(导出时间: {now})")
