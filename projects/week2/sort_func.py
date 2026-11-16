@@ -41,26 +41,26 @@ def sort_cases_by_years(*ages, reverse=False):
 def sort_demo(cases):
     print("\n--- 按建成年份升序（从早到晚）---")
     for c in sorted(cases, key=lambda c: int(c["建成年份"])):
-        print(f"{c["建成年份"]}年 - {c["名称"]}")
+        print(f'{c["建成年份"]}年 - {c["名称"]}')
 
     print("\n--- 按建成年份降序（从晚到早）---")
     for c in sorted(cases, key=lambda c: int(c["建成年份"]), reverse=True):
-        print(f"{c["建成年份"]}年 - {c["名称"]}")
+        print(f'{c["建成年份"]}年 - {c["名称"]}')
 
     print("\n--- 按建筑名称长度排序（名字短的在前）---")
     for c in sorted(cases, key=lambda c: len(c["名称"])):
-        print(f"{len(c["名称"])}字 - {c["名称"]}")
+        print(f'{len(c["名称"])}字 - {c["名称"]}')
 
     print("\n--- 按建筑师名字排序（字符串排序）---")
     for c in sorted(cases, key=lambda c: c["建筑师"]):
-        print(f"{c["建筑师"]} - {c["名称"]}")
+        print(f'{c["建筑师"]} - {c["名称"]}')
 
 # ========== 主程序：测试所有功能 ==========
 def main():
     print("=" * 45)
     print("  建筑案例排序工具 (可变参数+lambda+sorted)")
     print("=" * 45)
-  
+
     case1 = {
         "名称": "流水别墅",
         "建筑师": "弗兰克·劳埃德·赖特",
@@ -147,10 +147,10 @@ def main():
     print("  所有测试完成！")
     print("=" * 45)
 
+
 if __name__ == "__main__":
     main()
 
-    
 
 def ave_num(*num, **kwargs):
     max_num = max(num)
@@ -162,6 +162,7 @@ def ave_num(*num, **kwargs):
 
     return max_num, min_num, ave_num
 
+
 def sort_num(*num, reverse=False):
     sorted_num = sorted(num, reverse=reverse)
     return list(sorted_num)
@@ -171,14 +172,15 @@ def sort_len_num(*num, reverse=False):
     sorted_len_num = sorted(num, key=lambda a: len(a), reverse=reverse)
     return list(sorted_len_num)
 
-def main():
+
+def main_numbers():
     print("=" * 25)
     print("  数字求和排序工具")
     print("=" * 25)
 
     print("\n====求最值/平均值功能====")
     max_result, min_result, ave_result = ave_num(2, 6, 3, 7, 89, 11, 20, 50, 101, round=1)
-    print(f"该组数据的最大值为: {max_result}, 最小值为: {min_result}, 平均值为: {ave_result}") 
+    print(f"该组数据的最大值为: {max_result}, 最小值为: {min_result}, 平均值为: {ave_result}")
 
     print("\n====按数字大小排序功能====")
     num_list = sort_num(2, 6, 3, 7, 89, 11, 20, 50, 101)
@@ -190,19 +192,24 @@ def main():
     for j in num_list2:
         print(j)
 
+
 if __name__ == "__main__":
-    main()
+    main_numbers()
 
 
 print("\n----------------------")
+
 def add(x, y):
     return x + y
+
 
 def sub(x, y):
     return x - y
 
+
 def calc(x, y, open):
     return open(x, y)
+
 
 print(calc(20, 30, add))
 print(calc(10, 50, sub))

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "测试A",
+    "city": "杭州",
+    "area": 0,
+    "case_type": "未知类型"
+  },
+  {
+    "name": "测试B",
+    "city": "上海",
+    "area": 1,
+    "case_type": "商业"
+  },
+  {
+    "name": "测试C",
+    "city": "苏州",
+    "area": 1000000,
+    "case_type": "住宅"
+  }
+]
