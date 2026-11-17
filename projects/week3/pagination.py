@@ -77,7 +77,7 @@ while True:
             time.sleep(RETRY_DELAY)
 
     # ===== 判断是否重试成功 ====
-    if not success:
+    if not success or response is None:
         print(f"  第 {page} 页重试 {MAX_RETRIES} 次后仍然失败, 停止获取")
         break
 
