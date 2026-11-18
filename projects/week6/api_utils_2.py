@@ -5,7 +5,7 @@ def fetch_json(url, timeout=10):
         response = requests.get(url, timeout=timeout)
         response.raise_for_status()
         return response.json()
-    except requests.exceptions.HTTPError :
+    except requests.exceptions.HTTPError:
         print(f"{url} 异常, 状态码为: {response.status_code}")
         return None
     except requests.exceptions.Timeout:
@@ -13,6 +13,9 @@ def fetch_json(url, timeout=10):
         return None
     except requests.exceptions.ConnectionError:
         print(f"{url} 连接失败, 请检查网络")
+        return None
+    except requests.exceptions.JSONDecodeError:
+        print(f"{url} 返回的内容不是 JSON(状态码 {response.status_code})，请核对该地址是否返回 JSON")
         return None
     except Exception as e:
         print(f"{url} 出现未知错误, 错误信息: {e}")
