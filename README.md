@@ -34,7 +34,7 @@ pip install -r requirements.txt
 - 运行命令：
 ```
 cd E:\AI-Learning\projects\week6
-python projects\week6\day1_rebuild.py
+python day1_rebuild.py
 ```
 - 预期输出（6 个 URL 各一种结果）:
 ```
@@ -77,8 +77,6 @@ test_network_errors.py::test_url_httperror_1 PASSED                             
 
 ## 目录结构
 AI-Learning/
-├── .pytest_cache/
-├── .vscode/
 ├── notes/                          # 学习笔记
 ├── projects/
 │   ├── week0/                      # W0 工具安装与准备
