@@ -30,11 +30,11 @@ pip install -r requirements.txt
 ```
 
 ## 运行示例
+> 以下命令均假设在本人仓库根目录（`AI-Learning/`）下执行，若需要实际运行，请根据用户当前的实际情况对命令进行微调。
 ### 示例 1 (day1_rebuild.py)：调用 API 并保存 JSON
 - 运行命令：
 ```
-cd E:\AI-Learning\projects\week6
-python day1_rebuild.py
+python projects\week6\day1_rebuild.py
 ```
 - 预期输出（6 个 URL 各一种结果）:
 ```
@@ -50,8 +50,8 @@ https://github.com/LQ-GIF 返回的内容不是 JSON(状态码 200)，请核对�
 ### 示例 2 (test_network_errors.py)：运行测试
 - 运行命令:
 ```
-cd E:\AI-Learning\projects\week6
-python -m pytest test_networt_errors.py -v
+cd projects\week6
+python -m pytest test_network_errors.py -v
 ```
 - 预期输出（6 个测试项目全部通过）：
 ```
