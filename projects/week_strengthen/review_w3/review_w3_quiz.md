@@ -24,6 +24,11 @@
 - 答案：
     - params 出现在请求网站的末尾和返回的请求内容中，headers 只会出现在返回的请求内容中
     - params 放页数，行数，关键字这类查询类的信息，headers 放鉴权，格式类型，用户代理这类认证类信息
+- 正确答案：
+    - - **params** = 拼进 **URL 末尾**的查询串，**看得见、进日志、进浏览器地址栏**
+    - **headers** = 放在 **HTTP 报文头部**，**URL 里看不到**
+    - params 放**“筛哪些数据”**：关键词、页码、每页条数
+    - headers 放**“这次请求本身是什么”**：身份凭证、客户端类型、期望格式
 
 ## 第 3 题 `[简答]`
 - `response.json()` 返回的是什么类型？（提示：想一下你写 `json.dump` 之前那个变量是什么类型）
@@ -44,6 +49,16 @@
     - 不知道
     - json=data 收到的数据会跑到返回结果里的 json 字段
     - data=data 收到的数据会跑到返回结果里的 from 字段
+- 正确答案：
+    - requests.post(url, json=data)   # 发出去的是：{"name": "张三", "city": "杭州"}
+                                      # Content-Type: application/json
+                                      # → httpbin 放回 json 字段
+
+      requests.post(url, data=data)   # 发出去的是：name=%E5%BC%A0%E4%B8%89&city=...
+                                      # Content-Type: application/x-www-form-urlencoded
+                                      # → httpbin 放回 form 字段
+      **一句话记**：`json=` 发的是**结构化文档**，`data=`（传字典时）发的是**键值对串**。
+
 
 ## 第 5 题 `[简答]`
 - 请求头里写 `Authorization: Bearer my_token_123`。
@@ -55,6 +70,10 @@
     - token 如果写死在 python 文件中，如果这个文件上传到 GitHub 仓库，别人就会看到你的密钥的具体内容，会导致你的 API 可以被其他人调用，但是调用产生的费用要由你自己承担
 - 查询后得知：
     - Bearer 是一种由服务器发放的临时通行证，有时间限制
+- 正确答案：
+    - **`Bearer` = “持有者”**。`Authorization: Bearer <token>` 的意思是 “**我是这个 token 的持有者**”。
+    - 它的性质：**无状态**—— 服务器不关心你是谁，只验 “token 对不对”。**不一定有时效**（GitHub PAT 可永久，OAuth access token 通常 1 小时）。
+    - 不能写死：`.py` 一提交就进 git 历史，公开仓库 = **密钥公开**。后果两条：①别人用你的额度，账单你付；②如果 token 有写权限，别人能改你的数据。
 
 ## 第 6 题 `[简答]`
 - W3 Day4 学过用 `.env` 存密钥。
@@ -65,9 +84,10 @@
     - 存放密码 API Key 等敏感的配置信息
     - 别人可以通过仓库中的 .env 文件看到我的 API Key 等敏感信息，并进行调用。
     - 补救措施：
-        1.从提交记录中定位提交 .env 文件在哪一个版本的提交操作里
-        2.对该版本的提交操作进行撤回提交
-        3.撤回后将 .env 文件放入 .gitignore 忽略提交清单内并保存，确保后续提交远程仓库时不把 .env 文件提交进去
+        1.发现泄露的那一刻，先去平台把这个 Key 作废、重建。
+        2.从提交记录中定位提交 .env 文件在哪一个版本的提交操作里
+        3.对该版本的提交操作进行撤回提交
+        4.撤回后将 .env 文件放入 .gitignore 忽略提交清单内并保存，确保后续提交远程仓库时不把 .env 文件提交进去
 
 ## 第 7 题 `[简答]`
 - 一个接口支持分页，参数叫 `page` 和 `per_page`。
@@ -87,6 +107,13 @@
 - 答案：
     - 不知道
     - 不知道
+- 正确答案：
+    - **429 = Too Many Requests**，服务器在说 “**你来得太勤了，先歇会儿**”。
+      - 处理四步：
+        1. **看响应头 `Retry-After`** —— 服务器明确告诉你要等几秒
+        2. `time.sleep(那个秒数)`，然后重试
+        3. 连续被限就**主动降频**（每次请求之间加 sleep）
+        4. **指数退避**：第一次等 1 秒、第二次 2 秒、第三次 4 秒…… 这是业界通行做法
 
 ## 第 9 题 `[进阶]`
 - 你写了一个封装函数 `api_call(url)`，它内部用 `try/except` 把所有异常都吃掉了，失败时 `return None`。现在你想用 `pytest.raises(requests.exceptions.Timeout)` 来测它 “超时时会不会抛异常”。
@@ -103,3 +130,8 @@
     - requests.exceptions.Timeout 对应连接超时，requests.exceptions.ConnectionError 对应连接失败
     - requests.exceptions.Timeout 给出的提示是：连接超时，请刷新页面或重新连接
       requests.exceptions.ConnectionError 给出的提示是：连接失败，请检查网络
+- 正确答案：
+    | 故障在哪 | 用户看到的现象 | 该给的提示 |
+    |---|---|---|
+    | Timeout | 连上了，等不到数据	卡住不动，最后报超时 | “接口响应太慢，已等待 10 秒超时，请稍后重试” |
+    | ConnectionError | 握手就失败	立刻报错，秒失败 | “无法连接服务器，请检查网络或确认网址可访问” |
