@@ -89,7 +89,6 @@ AI-Learning/
 │   │   ├── day1_rebuild.py         # 独立重写：API + JSON
 │   │   ├── day1_compare.md         # 重写版与 W3 原版对比文档
 │   │   ├── api_utils_2.py          # 网络失败测试（测试对象）
-│   │   ├── output.json             # day1_rebuild.py 响应内容 JSON 文件
 │   │   └── test_network_errors.py  # 网络失败测试（测试程序）
 │   └── week_strengthen/            # 巩固测验
 ├── screenshots/                    # 每日练习作业截图
