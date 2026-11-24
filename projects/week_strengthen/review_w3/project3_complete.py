@@ -35,7 +35,7 @@ if __name__ == "__main__":
         "https://httpbin.org/status/500",
         "https://httpbin.org/status/300",
         "https://nonexistent-abcxyz.com",
-        "https://httpbin.org/delay/6",
+        "https://httpbin.org/delay/3",
     ]
 
     for u in URLS:
