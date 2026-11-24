@@ -18,6 +18,7 @@ Traceback (most recent call last):
           ^^^^^^^^^
 AttributeError: 'function' object has no attribute 'keys'
 ```
+> 为了排除项目里其他代码的干扰，我另建了 `day4_pdb_demo.py`，只保留最核心的调用逻辑来复现同一个问题，下面的调试过程基于这个脚本。
 
 ## 3. 原因分析
 - 主要原因：
@@ -56,6 +57,7 @@ https://nonexistent-abcxyz.com 连接失败, 请检查网络
 https://httpbin.org/delay/6 连接超时, 请检查网络后重试
     [返回 None —— 调用方应该跳过写文件]
 ```
+> 程序原代码为 https://httpbin.org/delay/3，此处改为 delay/6 是为测试程序是否能承接住超时报错，修改并未上传远程仓库
 
 ## 调试思路复盘
 - 先看报错的最后一行，确定 "是哪一类错误"；
