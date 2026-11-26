@@ -28,14 +28,26 @@ python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
+> 国内网络安装较慢时，可临时指定镜像源：
+> pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
 
 ## 运行示例
 > 以下命令均假设在本人仓库根目录（`AI-Learning/`）下执行，若需要实际运行，请根据用户当前的实际情况对命令进行微调。
 ### 示例 1 (day1_rebuild.py)：调用 API 并保存 JSON
-- 运行命令：
+- 运行命令（测试版）：
 ```
 python projects\week6\day1_rebuild.py
 ```
+> 该运行命令仅可用于测试
+
+- 运行命令（指定保存位置版）：
+```
+cd E:\AI-Learning\resul
+python E:\AI-Learning\projects\week6\day1_rebuild.py
+```
+> 该运行命令为演示版，不可直接复用，由于每台设备的目录结构和程序下载位置不同，请获取到保存写入文件的文件夹和 `day1_rebuild.py` 程序的绝对路径后，用 `cd + 保存写入文件的文件夹绝对路径` 将运行环境转至该文件夹，再用 `python + day1_rebuild.py 程序的绝对路径` 运行该程序
+
 - 预期输出（6 个 URL 各一种结果）:
 ```
 https://httpbin.org/get 解析完成, 已保存到 output.json 
@@ -43,9 +55,14 @@ https://httpbin.org/status/404 异常, 状态码为: 404
 https://httpbin.org/status/500 异常, 状态码为: 500
 https://httpbin.org/status/300 返回的内容不是 JSON(状态码 300)，请核对该地址是否返回 JSON
 https://nonexistent-abcxyz.com 连接失败, 请检查网络
-https://github.com/LQ-GIF 返回的内容不是 JSON(状态码 200)，请核对该地址是否返回 JSON
+https://github.com/LQ-GIF 连接失败 / 或返回非 JSON（取决于当时网络）
 ```
-**检查到状态码为 200 时，程序会将返回的响应内容写入一个 JSON 文件中，并保存在当前运行的文件目录中，运行该程序前，建议将运行地址改为程序所在的文件夹，否则 JSON 文件会直接生成在根目录中**
+> `https://github.com/LQ-GIF` 网站为真实网络地址，测试结果会根据网络情况、IP 地址等外在因素而有所不同，以个人实际输出结果为准，本结果仅供参考，特此提醒！！！
+
+- 保存多个写入文件
+  若要对不同的返回结果进行单独保存，可在 `projects\week6` 文件夹中找到 `day1_rebuild.py` 程序，对该程序中的 `path` 变量的值（第 10 行代码）进行修改，只改 `.json` 之前的内容，`.json` 这个文件格式后缀不能动
+
+**当状态码为 200 时，程序会把响应内容写进 `output.json`，位置是「你执行命令时所在的目录」，不是脚本所在的目录。在根目录执行，文件就落在根目录；想让文件落到指定文件夹，就先 `cd 文件夹绝对路径` 再运行。**
 
 ### 示例 2 (test_network_errors.py)：运行测试
 - 运行命令:
