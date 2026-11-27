@@ -39,14 +39,13 @@ pip install -r requirements.txt
 ```
 python projects\week6\day1_rebuild.py
 ```
-> 该运行命令仅可用于测试
 
-- 运行命令（指定保存位置版）：
+> 在仓库根目录执行：`python projects\week6\day1_rebuild.py` 时 `output.json` 会生成在你执行命令时所在的目录，不是脚本所在的 week6 目录。如果想保存到单独的文件夹，请按以下命令操作：
 ```
-cd E:\AI-Learning\resul
-python E:\AI-Learning\projects\week6\day1_rebuild.py
+mkdir 文件夹名称 -Force                           # 新建文件夹
+cd (新建文件夹的绝对路径)                          # 将运行目录跳转到新建文件夹所在的位置
+python (day1_rebuild.py 在当前设备中的绝对路径)    # 跳转完成后用 day1_rebuild.py 的绝对路径运行该程序
 ```
-> 该运行命令为演示版，不可直接复用，由于每台设备的目录结构和程序下载位置不同，请获取到保存写入文件的文件夹和 `day1_rebuild.py` 程序的绝对路径后，用 `cd + 保存写入文件的文件夹绝对路径` 将运行环境转至该文件夹，再用 `python + day1_rebuild.py 程序的绝对路径` 运行该程序
 
 - 预期输出（6 个 URL 各一种结果）:
 ```

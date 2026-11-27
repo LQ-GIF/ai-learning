@@ -7,6 +7,6 @@
     "User-Agent": "python-requests/2.34.2"
   },
   "method": "GET",
-  "origin": "101.71.37.167",
+  "origin": "101.71.39.7",
   "url": "https://httpbin.org/get"
 }
